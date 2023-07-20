@@ -1,0 +1,18 @@
+.form {
+  margin: 0 auto;
+  display: flex;
+  max-width: 522px;
+}
+
+.note {
+  display: flex;
+  justify-self: flex-start;
+  max-width: 490px;
+  margin: 4px auto 0;
+}
+
+.wrapper {
+  margin-top: 120px;
+  justify-content: center;
+  display: flex;
+}
