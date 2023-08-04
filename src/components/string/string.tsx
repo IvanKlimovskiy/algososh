@@ -7,26 +7,36 @@ import styles from './string.module.css';
 import { ElementStates } from '../../types/element-states';
 
 export const StringComponent: React.FC = () => {
-  const [array, setArray] = useState<string[]>([]);
+  const [circles, setCircles] = useState<string[]>([]);
+  const [startIndex, setStartIndex] = useState<number>(0);
+  const [endIndex, setEndIndex] = useState<number>(10);
+  const [isButtonClicked, setIsButtonClicked] = useState(false);
   const [inputValue, setInputValue] = useState('');
-
-  function splitToArray(str: string) {
-    return str.split('');
-  }
-
-  function reverseArray(arr: string[]) {
-    let start = 0;
-    let end = arr.length - 1;
-    while (start < end) {
-      console.log('df');
-      start++;
-    }
-  }
+  const [isEndedAnimation, setIsEndedAnimation] = useState(false);
 
   const onClickHandler = () => {
-    const newArray = splitToArray(inputValue);
-    setArray(newArray);
-    reverseArray(array);
+    setIsEndedAnimation(false);
+    setIsButtonClicked(true);
+    const arr = inputValue.split('');
+    let start = 0;
+    let end = arr.length - 1;
+    const animation = setInterval(() => {
+      if (start > end) {
+        setIsEndedAnimation(true);
+        setCircles([...arr]);
+        setIsButtonClicked(false);
+        clearInterval(animation);
+        return;
+      }
+      setStartIndex(start);
+      setEndIndex(end);
+      setCircles([...arr]);
+      const temp = arr[start];
+      arr[start] = arr[end];
+      arr[end] = temp;
+      start++;
+      end--;
+    }, 1000);
   };
 
   return (
@@ -38,9 +48,25 @@ export const StringComponent: React.FC = () => {
           maxLength={11}
           isLimitText={true}
         />
-        <Button onClick={onClickHandler} extraClass={'ml-6'} text={'Развернуть'} />
+        <Button
+          isLoader={isButtonClicked}
+          disabled={isButtonClicked}
+          onClick={onClickHandler}
+          extraClass="ml-6"
+          text="Развернуть"
+        />
       </form>
-      <div className={styles.wrapper}>{array}</div>
+      <div className={styles.wrapper}>
+        {circles.map((letter, index) => {
+          let state: ElementStates | undefined;
+          if ((index === startIndex || index === endIndex) && !isEndedAnimation) {
+            state = ElementStates.Changing;
+          } else if (index < startIndex || index > endIndex || isEndedAnimation) {
+            state = ElementStates.Modified;
+          }
+          return <Circle extraClass="ml-8" key={index} letter={letter} state={state} />;
+        })}
+      </div>
     </SolutionLayout>
   );
 };
