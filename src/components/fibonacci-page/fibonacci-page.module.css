@@ -1,0 +1,22 @@
+.wrapper {
+  max-width: 944px;
+  margin: 48px auto 0 ;
+  display: grid;
+  row-gap: 48px;
+  grid-template-columns: repeat(auto-fit, minmax(94px, 94px));
+  justify-content: center; /* Центрирование по горизонтали */
+  align-items: center; /* Центрирование по вертикали */
+}
+
+.form {
+  margin: 0 auto;
+  display: flex;
+  max-width: 522px;
+}
+
+.note {
+  display: flex;
+  justify-self: flex-start;
+  max-width: 490px;
+  margin: 4px auto 0;
+}

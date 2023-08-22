@@ -1,0 +1,28 @@
+.wrapper {
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 980px;
+}
+
+.buttonsWrapper {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  max-width: 422px;
+}
+
+.button {
+  width: 100%;
+  max-width: 205px;
+}
+
+.columnsWrapper {
+  margin-top: 48px;
+  justify-content: center;
+  align-items: end;
+  display: flex;
+  gap: 10px
+}
