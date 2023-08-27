@@ -43,6 +43,7 @@ export const StackPage: React.FC = () => {
   const [stackItems, setStackItems] = useState<number[]>([]);
   const [inputValue, setInputValue] = useState<string>('');
   const [isChanging, setIsChanging] = useState(false);
+  const [clickedButton, setClickedButton] = useState<'delete' | 'submit' | 'reset' | null>(null);
 
   const pushElement = async () => {
     setIsChanging(true);
@@ -87,10 +88,34 @@ export const StackPage: React.FC = () => {
           isLimitText={true}
         />
         <div className={styles.buttonsWrapper}>
-          <Button disabled={inputValue === ''} onClick={pushElement} text={'Добавить'} />
-          <Button onClick={popElement} disabled={stackItems.length === 0} text={'Удалить'} />
+          <Button
+            isLoader={isChanging && clickedButton === 'submit'}
+            disabled={inputValue === ''}
+            onClick={() => {
+              pushElement().then();
+              setClickedButton('submit');
+            }}
+            text={'Добавить'}
+          />
+          <Button
+            isLoader={isChanging && clickedButton === 'delete'}
+            onClick={() => {
+              popElement().then();
+              setClickedButton('delete');
+            }}
+            disabled={stackItems.length === 0}
+            text={'Удалить'}
+          />
         </div>
-        <Button onClick={clearStack} type={'reset'} disabled={stackItems.length === 0} text={'Очистить'} />
+        <Button
+          isLoader={isChanging && clickedButton === 'reset'}
+          onClick={() => {
+            clearStack();
+            setClickedButton('reset');
+          }}
+          disabled={stackItems.length === 0}
+          text={'Очистить'}
+        />
       </div>
       <div className={styles.circles}>
         {stackItems.map((el, index) => {
