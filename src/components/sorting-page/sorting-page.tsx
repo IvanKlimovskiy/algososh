@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { SolutionLayout } from '../ui/solution-layout/solution-layout';
 import { RadioInput } from '../ui/radio-input/radio-input';
 import styles from './sorting-page.module.css';
@@ -15,7 +15,11 @@ export const SortingPage: React.FC = () => {
   const [clickedButton, setClickedButton] = useState<Direction.Ascending | Direction.Descending | null>(null);
   const [radioInputChecked, setRadioInputChecked] = useState<string>('Выбор');
 
-  const createNewArray = () => {
+  useEffect(() => {
+    createNewArray();
+  }, []);
+
+  function createNewArray() {
     const elementCount = Math.floor(Math.random() * (17 - 3 + 1)) + 3;
     const tempArray: number[] = [];
     for (let i = 0; i < elementCount; i++) {
@@ -24,7 +28,7 @@ export const SortingPage: React.FC = () => {
     }
     const newArray = [...new Set(tempArray)];
     setArray(newArray);
-  };
+  }
 
   const selectionSort = async (direction: 'ascending' | 'descending') => {
     setIsChanging(true);

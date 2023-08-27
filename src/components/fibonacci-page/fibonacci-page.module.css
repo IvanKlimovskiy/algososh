@@ -4,8 +4,8 @@
   display: grid;
   row-gap: 48px;
   grid-template-columns: repeat(auto-fit, minmax(94px, 94px));
-  justify-content: center; /* Центрирование по горизонтали */
-  align-items: center; /* Центрирование по вертикали */
+  justify-content: center;
+  align-items: center;
 }
 
 .form {
@@ -20,3 +20,5 @@
   max-width: 490px;
   margin: 4px auto 0;
 }
+
+
