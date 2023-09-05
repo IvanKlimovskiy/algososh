@@ -5,12 +5,15 @@ import { Input } from '../ui/input/input';
 import { Button } from '../ui/button/button';
 import { Circle } from '../ui/circle/circle';
 import { ElementStates } from '../../types/element-states';
+import { ButtonType } from '../../types/button-type';
 
 export const StackPage: React.FC = () => {
   interface IStack<T> {
     push: (item: T) => void;
     pop: () => void;
     peek: () => T | null;
+    getElements: () => T[];
+    clear: () => void;
   }
 
   class Stack<T> implements IStack<T> {
@@ -43,7 +46,7 @@ export const StackPage: React.FC = () => {
   const [stackItems, setStackItems] = useState<number[]>([]);
   const [inputValue, setInputValue] = useState<string>('');
   const [isChanging, setIsChanging] = useState(false);
-  const [clickedButton, setClickedButton] = useState<'delete' | 'submit' | 'reset' | null>(null);
+  const [clickedButton, setClickedButton] = useState<ButtonType | null>(null);
 
   const pushElement = async () => {
     setIsChanging(true);
@@ -89,29 +92,29 @@ export const StackPage: React.FC = () => {
         />
         <div className={styles.buttonsWrapper}>
           <Button
-            isLoader={isChanging && clickedButton === 'submit'}
+            isLoader={isChanging && clickedButton === ButtonType.Submit}
             disabled={inputValue === ''}
             onClick={() => {
               pushElement().then();
-              setClickedButton('submit');
+              setClickedButton(ButtonType.Submit);
             }}
             text={'Добавить'}
           />
           <Button
-            isLoader={isChanging && clickedButton === 'delete'}
+            isLoader={isChanging && clickedButton === ButtonType.Delete}
             onClick={() => {
               popElement().then();
-              setClickedButton('delete');
+              setClickedButton(ButtonType.Delete);
             }}
             disabled={stackItems.length === 0}
             text={'Удалить'}
           />
         </div>
         <Button
-          isLoader={isChanging && clickedButton === 'reset'}
+          isLoader={isChanging && clickedButton === ButtonType.Reset}
           onClick={() => {
             clearStack();
-            setClickedButton('reset');
+            setClickedButton(ButtonType.Reset);
           }}
           disabled={stackItems.length === 0}
           text={'Очистить'}

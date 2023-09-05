@@ -42,22 +42,18 @@ export const SortingPage: React.FC = () => {
       setArray([...newArray]);
 
       for (let j = i + 1; j <= arrayLength + 1; j++) {
-        await new Promise<void>((resolve) => {
-          setTimeout(() => {
-            setChangingIndexes([...changingIndexes, i, j]);
-            setArray([...newArray]);
-            if (direction === 'ascending') {
-              if (newArray[j] < newArray[minIndex]) {
-                minIndex = j;
-              }
-            } else {
-              if (newArray[j] > newArray[minIndex]) {
-                minIndex = j;
-              }
-            }
-            resolve();
-          }, 500);
-        });
+        await new Promise((resolve) => setTimeout(resolve, 500));
+        setChangingIndexes([...changingIndexes, i, j]);
+        setArray([...newArray]);
+        if (direction === 'ascending') {
+          if (newArray[j] < newArray[minIndex]) {
+            minIndex = j;
+          }
+        } else {
+          if (newArray[j] > newArray[minIndex]) {
+            minIndex = j;
+          }
+        }
       }
 
       if (minIndex !== i) {
@@ -79,26 +75,22 @@ export const SortingPage: React.FC = () => {
 
     for (let i = 0; i <= arrayLength; i++) {
       for (let j = 0; j < arrayLength - i; j++) {
-        await new Promise<void>((resolve) => {
-          setTimeout(() => {
-            setChangingIndexes([...changingIndexes, j, j + 1]);
-            setArray([...newArray]);
-            if (direction === 'ascending') {
-              if (newArray[j] > newArray[j + 1]) {
-                const temp = newArray[j];
-                newArray[j] = newArray[j + 1];
-                newArray[j + 1] = temp;
-              }
-            } else {
-              if (newArray[j] < newArray[j + 1]) {
-                const temp = newArray[j];
-                newArray[j] = newArray[j + 1];
-                newArray[j + 1] = temp;
-              }
-            }
-            resolve();
-          }, 500);
-        });
+        await new Promise((resolve) => setTimeout(resolve, 500));
+        setChangingIndexes([...changingIndexes, j, j + 1]);
+        setArray([...newArray]);
+        if (direction === 'ascending') {
+          if (newArray[j] > newArray[j + 1]) {
+            const temp = newArray[j];
+            newArray[j] = newArray[j + 1];
+            newArray[j + 1] = temp;
+          }
+        } else {
+          if (newArray[j] < newArray[j + 1]) {
+            const temp = newArray[j];
+            newArray[j] = newArray[j + 1];
+            newArray[j + 1] = temp;
+          }
+        }
       }
       setModifiedIndexes((prevState) => [...prevState, arrayLength - i]);
       setArray([...newArray]);
