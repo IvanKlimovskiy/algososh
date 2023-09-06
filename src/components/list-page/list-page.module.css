@@ -1,0 +1,33 @@
+.wrapper {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  max-width: 952px;
+}
+
+.top {
+  display: flex;
+  gap: 12px;
+}
+
+.bottom {
+  gap: 12px;
+  display: flex;
+}
+
+.input {
+  width: 100%;
+  max-width: 204px;
+}
+
+.buttonsWrapper {
+  display: flex;
+  width: 100%;
+  gap: 12px;
+}
+
+.button {
+  width: 100%;
+}
