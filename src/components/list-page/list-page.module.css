@@ -1,33 +1,20 @@
 .wrapper {
-  margin: 0 auto;
   display: flex;
   flex-direction: column;
   gap: 12px;
-  width: 100%;
-  max-width: 952px;
+  max-width: 1150px;
+  margin: 0 auto;
 }
 
-.top {
+.row {
   display: flex;
   gap: 12px;
 }
 
-.bottom {
-  gap: 12px;
+.items {
+  margin: 90px 0 0 0;
   display: flex;
-}
-
-.input {
-  width: 100%;
-  max-width: 204px;
-}
-
-.buttonsWrapper {
-  display: flex;
-  width: 100%;
-  gap: 12px;
-}
-
-.button {
-  width: 100%;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
 }
