@@ -10,21 +10,19 @@ export const FibonacciPage: React.FC = () => {
   const [circles, setCircles] = useState<number[]>([]);
   const [isButtonClicked, setIsButtonClicked] = useState(false);
 
-  const onClickHandler = () => {
+  const onClickHandler = async () => {
     setIsButtonClicked(true);
     const array = [0, 1];
     let step = 0;
-    const animation = setInterval(() => {
-      if (step >= +inputValue) {
-        clearInterval(animation);
-        setIsButtonClicked(false);
-      }
+    while (step <= +inputValue) {
       array.shift();
       setCircles([...array]);
+      await new Promise((resolve) => setTimeout(resolve, 500));
       array.unshift(0);
       array.push(array[step] + array[step + 1]);
       step++;
-    }, 500);
+    }
+    setIsButtonClicked(false);
   };
 
   return (
