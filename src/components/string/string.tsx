@@ -14,29 +14,26 @@ export const StringComponent: React.FC = () => {
   const [inputValue, setInputValue] = useState('');
   const [isEndedAnimation, setIsEndedAnimation] = useState(false);
 
-  const onClickHandler = () => {
+  const onClickHandler = async () => {
     setIsEndedAnimation(false);
     setIsButtonClicked(true);
     const arr = inputValue.split('');
     let start = 0;
     let end = arr.length - 1;
-    const animation = setInterval(() => {
-      if (start > end) {
-        setIsEndedAnimation(true);
-        setCircles([...arr]);
-        setIsButtonClicked(false);
-        clearInterval(animation);
-        return;
-      }
+    while (start < end) {
       setStartIndex(start);
       setEndIndex(end);
       setCircles([...arr]);
+      await new Promise((resolve) => setTimeout(resolve, 1000));
       const temp = arr[start];
       arr[start] = arr[end];
       arr[end] = temp;
       start++;
       end--;
-    }, 1000);
+    }
+    setIsEndedAnimation(true);
+    setCircles([...arr]);
+    setIsButtonClicked(false);
   };
 
   return (
