@@ -6,6 +6,7 @@ import {
   CIRCLE_DEFAULT_STYLE,
   FIBONACCI_PAGE,
   INPUT_FIBONACCI,
+  CIRCLE_INDEX,
 } from '../../src/constants/selectors';
 
 describe('Проверка последовательности Фибоначчи', () => {
@@ -27,7 +28,7 @@ describe('Проверка последовательности Фибоначч
       .should('contain.text', '1')
       .find(CIRCLE_BORDER)
       .should('have.css', 'border', CIRCLE_DEFAULT_STYLE)
-      .get('[class*="circle_index__"]')
+      .get(CIRCLE_INDEX)
       .should('contain.text', '0');
     //
     cy.wait(500);
@@ -37,7 +38,7 @@ describe('Проверка последовательности Фибоначч
       .should('contain.text', '1')
       .find(CIRCLE_BORDER)
       .should('have.css', 'border', CIRCLE_DEFAULT_STYLE)
-      .get('[class*="circle_index__"]')
+      .get(CIRCLE_INDEX)
       .should('contain.text', '0');
     //
     cy.get(CIRCLE)
@@ -45,7 +46,7 @@ describe('Проверка последовательности Фибоначч
       .should('contain.text', '1')
       .find(CIRCLE_BORDER)
       .should('have.css', 'border', CIRCLE_DEFAULT_STYLE)
-      .get('[class*="circle_index__"]')
+      .get(CIRCLE_INDEX)
       .should('contain.text', '1');
     //
     cy.wait(500);
@@ -55,7 +56,7 @@ describe('Проверка последовательности Фибоначч
       .should('contain.text', '1')
       .find(CIRCLE_BORDER)
       .should('have.css', 'border', CIRCLE_DEFAULT_STYLE)
-      .get('[class*="circle_index__"]')
+      .get(CIRCLE_INDEX)
       .should('contain.text', '0');
     //
     cy.get(CIRCLE)
@@ -63,7 +64,7 @@ describe('Проверка последовательности Фибоначч
       .should('contain.text', '1')
       .find(CIRCLE_BORDER)
       .should('have.css', 'border', CIRCLE_DEFAULT_STYLE)
-      .get('[class*="circle_index__"]')
+      .get(CIRCLE_INDEX)
       .should('contain.text', '1');
     //
     cy.get(CIRCLE)
@@ -71,7 +72,7 @@ describe('Проверка последовательности Фибоначч
       .should('contain.text', '2')
       .find(CIRCLE_BORDER)
       .should('have.css', 'border', CIRCLE_DEFAULT_STYLE)
-      .get('[class*="circle_index__"]')
+      .get(CIRCLE_INDEX)
       .should('contain.text', '2');
     //
     cy.wait(500);
@@ -81,7 +82,7 @@ describe('Проверка последовательности Фибоначч
       .should('contain.text', '1')
       .find(CIRCLE_BORDER)
       .should('have.css', 'border', CIRCLE_DEFAULT_STYLE)
-      .get('[class*="circle_index__"]')
+      .get(CIRCLE_INDEX)
       .should('contain.text', '0');
     //
     cy.get(CIRCLE)
@@ -89,7 +90,7 @@ describe('Проверка последовательности Фибоначч
       .should('contain.text', '1')
       .find(CIRCLE_BORDER)
       .should('have.css', 'border', CIRCLE_DEFAULT_STYLE)
-      .get('[class*="circle_index__"]')
+      .get(CIRCLE_INDEX)
       .should('contain.text', '1');
     //
     cy.get(CIRCLE)
@@ -97,7 +98,7 @@ describe('Проверка последовательности Фибоначч
       .should('contain.text', '2')
       .find(CIRCLE_BORDER)
       .should('have.css', 'border', CIRCLE_DEFAULT_STYLE)
-      .get('[class*="circle_index__"]')
+      .get(CIRCLE_INDEX)
       .should('contain.text', '2');
     //
     cy.get(CIRCLE)
@@ -105,7 +106,7 @@ describe('Проверка последовательности Фибоначч
       .should('contain.text', '3')
       .find(CIRCLE_BORDER)
       .should('have.css', 'border', CIRCLE_DEFAULT_STYLE)
-      .get('[class*="circle_index__"]')
+      .get(CIRCLE_INDEX)
       .should('contain.text', '3');
     //
     cy.wait(500);
@@ -115,7 +116,7 @@ describe('Проверка последовательности Фибоначч
       .should('contain.text', '1')
       .find(CIRCLE_BORDER)
       .should('have.css', 'border', CIRCLE_DEFAULT_STYLE)
-      .get('[class*="circle_index__"]')
+      .get(CIRCLE_INDEX)
       .should('contain.text', '0');
     //
     cy.get(CIRCLE)
@@ -123,7 +124,7 @@ describe('Проверка последовательности Фибоначч
       .should('contain.text', '1')
       .find(CIRCLE_BORDER)
       .should('have.css', 'border', CIRCLE_DEFAULT_STYLE)
-      .get('[class*="circle_index__"]')
+      .get(CIRCLE_INDEX)
       .should('contain.text', '1');
     //
     cy.get(CIRCLE)
@@ -131,7 +132,7 @@ describe('Проверка последовательности Фибоначч
       .should('contain.text', '2')
       .find(CIRCLE_BORDER)
       .should('have.css', 'border', CIRCLE_DEFAULT_STYLE)
-      .get('[class*="circle_index__"]')
+      .get(CIRCLE_INDEX)
       .should('contain.text', '2');
     //
     cy.get(CIRCLE)
@@ -139,7 +140,7 @@ describe('Проверка последовательности Фибоначч
       .should('contain.text', '3')
       .find(CIRCLE_BORDER)
       .should('have.css', 'border', CIRCLE_DEFAULT_STYLE)
-      .get('[class*="circle_index__"]')
+      .get(CIRCLE_INDEX)
       .should('contain.text', '3');
     //
     cy.get(CIRCLE)
@@ -147,7 +148,7 @@ describe('Проверка последовательности Фибоначч
       .should('contain.text', '5')
       .find(CIRCLE_BORDER)
       .should('have.css', 'border', CIRCLE_DEFAULT_STYLE)
-      .get('[class*="circle_index__"]')
+      .get(CIRCLE_INDEX)
       .should('contain.text', '4');
     //
     cy.wait(500);
@@ -157,7 +158,7 @@ describe('Проверка последовательности Фибоначч
       .should('contain.text', '1')
       .find(CIRCLE_BORDER)
       .should('have.css', 'border', CIRCLE_DEFAULT_STYLE)
-      .get('[class*="circle_index__"]')
+      .get(CIRCLE_INDEX)
       .should('contain.text', '0');
     //
     cy.get(CIRCLE)
@@ -165,7 +166,7 @@ describe('Проверка последовательности Фибоначч
       .should('contain.text', '1')
       .find(CIRCLE_BORDER)
       .should('have.css', 'border', CIRCLE_DEFAULT_STYLE)
-      .get('[class*="circle_index__"]')
+      .get(CIRCLE_INDEX)
       .should('contain.text', '1');
     //
     cy.get(CIRCLE)
@@ -173,7 +174,7 @@ describe('Проверка последовательности Фибоначч
       .should('contain.text', '2')
       .find(CIRCLE_BORDER)
       .should('have.css', 'border', CIRCLE_DEFAULT_STYLE)
-      .get('[class*="circle_index__"]')
+      .get(CIRCLE_INDEX)
       .should('contain.text', '2');
     //
     cy.get(CIRCLE)
@@ -181,7 +182,7 @@ describe('Проверка последовательности Фибоначч
       .should('contain.text', '3')
       .find(CIRCLE_BORDER)
       .should('have.css', 'border', CIRCLE_DEFAULT_STYLE)
-      .get('[class*="circle_index__"]')
+      .get(CIRCLE_INDEX)
       .should('contain.text', '3');
     //
     cy.get(CIRCLE)
@@ -189,7 +190,7 @@ describe('Проверка последовательности Фибоначч
       .should('contain.text', '5')
       .find(CIRCLE_BORDER)
       .should('have.css', 'border', CIRCLE_DEFAULT_STYLE)
-      .get('[class*="circle_index__"]')
+      .get(CIRCLE_INDEX)
       .should('contain.text', '4');
     //
     cy.get(CIRCLE)
@@ -197,7 +198,7 @@ describe('Проверка последовательности Фибоначч
       .should('contain.text', '8')
       .find(CIRCLE_BORDER)
       .should('have.css', 'border', CIRCLE_DEFAULT_STYLE)
-      .get('[class*="circle_index__"]')
+      .get(CIRCLE_INDEX)
       .should('contain.text', '5');
     //
     cy.wait(500);
@@ -207,7 +208,7 @@ describe('Проверка последовательности Фибоначч
       .should('contain.text', '1')
       .find(CIRCLE_BORDER)
       .should('have.css', 'border', CIRCLE_DEFAULT_STYLE)
-      .get('[class*="circle_index__"]')
+      .get(CIRCLE_INDEX)
       .should('contain.text', '0');
     //
     cy.get(CIRCLE)
@@ -215,7 +216,7 @@ describe('Проверка последовательности Фибоначч
       .should('contain.text', '1')
       .find(CIRCLE_BORDER)
       .should('have.css', 'border', CIRCLE_DEFAULT_STYLE)
-      .get('[class*="circle_index__"]')
+      .get(CIRCLE_INDEX)
       .should('contain.text', '1');
     //
     cy.get(CIRCLE)
@@ -223,7 +224,7 @@ describe('Проверка последовательности Фибоначч
       .should('contain.text', '2')
       .find(CIRCLE_BORDER)
       .should('have.css', 'border', CIRCLE_DEFAULT_STYLE)
-      .get('[class*="circle_index__"]')
+      .get(CIRCLE_INDEX)
       .should('contain.text', '2');
     //
     cy.get(CIRCLE)
@@ -231,7 +232,7 @@ describe('Проверка последовательности Фибоначч
       .should('contain.text', '3')
       .find(CIRCLE_BORDER)
       .should('have.css', 'border', CIRCLE_DEFAULT_STYLE)
-      .get('[class*="circle_index__"]')
+      .get(CIRCLE_INDEX)
       .should('contain.text', '3');
     //
     cy.get(CIRCLE)
@@ -239,7 +240,7 @@ describe('Проверка последовательности Фибоначч
       .should('contain.text', '5')
       .find(CIRCLE_BORDER)
       .should('have.css', 'border', CIRCLE_DEFAULT_STYLE)
-      .get('[class*="circle_index__"]')
+      .get(CIRCLE_INDEX)
       .should('contain.text', '4');
     //
     cy.get(CIRCLE)
@@ -247,7 +248,7 @@ describe('Проверка последовательности Фибоначч
       .should('contain.text', '8')
       .find(CIRCLE_BORDER)
       .should('have.css', 'border', CIRCLE_DEFAULT_STYLE)
-      .get('[class*="circle_index__"]')
+      .get(CIRCLE_INDEX)
       .should('contain.text', '5');
     //
     cy.get(CIRCLE)
@@ -255,7 +256,7 @@ describe('Проверка последовательности Фибоначч
       .should('contain.text', '13')
       .find(CIRCLE_BORDER)
       .should('have.css', 'border', CIRCLE_DEFAULT_STYLE)
-      .get('[class*="circle_index__"]')
+      .get(CIRCLE_INDEX)
       .should('contain.text', '6');
     //
     cy.wait(500);
@@ -265,7 +266,7 @@ describe('Проверка последовательности Фибоначч
       .should('contain.text', '1')
       .find(CIRCLE_BORDER)
       .should('have.css', 'border', CIRCLE_DEFAULT_STYLE)
-      .get('[class*="circle_index__"]')
+      .get(CIRCLE_INDEX)
       .should('contain.text', '0');
     //
     cy.get(CIRCLE)
@@ -273,7 +274,7 @@ describe('Проверка последовательности Фибоначч
       .should('contain.text', '1')
       .find(CIRCLE_BORDER)
       .should('have.css', 'border', CIRCLE_DEFAULT_STYLE)
-      .get('[class*="circle_index__"]')
+      .get(CIRCLE_INDEX)
       .should('contain.text', '1');
     //
     cy.get(CIRCLE)
@@ -281,7 +282,7 @@ describe('Проверка последовательности Фибоначч
       .should('contain.text', '2')
       .find(CIRCLE_BORDER)
       .should('have.css', 'border', CIRCLE_DEFAULT_STYLE)
-      .get('[class*="circle_index__"]')
+      .get(CIRCLE_INDEX)
       .should('contain.text', '2');
     //
     cy.get(CIRCLE)
@@ -289,7 +290,7 @@ describe('Проверка последовательности Фибоначч
       .should('contain.text', '3')
       .find(CIRCLE_BORDER)
       .should('have.css', 'border', CIRCLE_DEFAULT_STYLE)
-      .get('[class*="circle_index__"]')
+      .get(CIRCLE_INDEX)
       .should('contain.text', '3');
     //
     cy.get(CIRCLE)
@@ -297,7 +298,7 @@ describe('Проверка последовательности Фибоначч
       .should('contain.text', '5')
       .find(CIRCLE_BORDER)
       .should('have.css', 'border', CIRCLE_DEFAULT_STYLE)
-      .get('[class*="circle_index__"]')
+      .get(CIRCLE_INDEX)
       .should('contain.text', '4');
     //
     cy.get(CIRCLE)
@@ -305,7 +306,7 @@ describe('Проверка последовательности Фибоначч
       .should('contain.text', '8')
       .find(CIRCLE_BORDER)
       .should('have.css', 'border', CIRCLE_DEFAULT_STYLE)
-      .get('[class*="circle_index__"]')
+      .get(CIRCLE_INDEX)
       .should('contain.text', '5');
     //
     cy.get(CIRCLE)
@@ -313,7 +314,7 @@ describe('Проверка последовательности Фибоначч
       .should('contain.text', '13')
       .find(CIRCLE_BORDER)
       .should('have.css', 'border', CIRCLE_DEFAULT_STYLE)
-      .get('[class*="circle_index__"]')
+      .get(CIRCLE_INDEX)
       .should('contain.text', '6');
     //
     cy.get(CIRCLE)
@@ -321,7 +322,7 @@ describe('Проверка последовательности Фибоначч
       .should('contain.text', '21')
       .find(CIRCLE_BORDER)
       .should('have.css', 'border', CIRCLE_DEFAULT_STYLE)
-      .get('[class*="circle_index__"]')
+      .get(CIRCLE_INDEX)
       .should('contain.text', '7');
     //
     cy.wait(500);
