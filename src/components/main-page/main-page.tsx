@@ -16,22 +16,22 @@ export const MainPage: React.FC<MainPageProps> = ({ extraClass = '' }) => {
         <p className={`text text_type_fibonacci text_color_secondary ${styles.fibonacci_title}`}>им. Фибоначчи</p>
       </div>
       <div className={styles.cards_box}>
-        <Link className={styles.link} data-testid="link-to-recursion" to="/recursion">
+        <Link className={styles.link} data-testid="recursion" to="/recursion">
           <div className={`${styles.card} ${styles.string}`} />
         </Link>
-        <Link className={styles.link} data-testid="link-to-fibonacci" to="/fibonacci">
+        <Link className={styles.link} data-testid="fibonacci" to="/fibonacci">
           <div className={`${styles.card} ${styles.fibonacci}`} />
         </Link>
-        <Link className={styles.link} data-testid="link-to-sorting" to="/sorting">
+        <Link className={styles.link} data-testid="sorting" to="/sorting">
           <div className={`${styles.card} ${styles.arr}`} />
         </Link>
-        <Link className={styles.link} data-testid="link-to-stack" to="/stack">
+        <Link className={styles.link} data-testid="stack" to="/stack">
           <div className={`${styles.card} ${styles.stack}`} />
         </Link>
-        <Link className={styles.link} data-testid="link-to-queue" to="/queue">
+        <Link className={styles.link} data-testid="queue" to="/queue">
           <div className={`${styles.card} ${styles.queue}`} />
         </Link>
-        <Link className={styles.link} data-testid="link-to-list" to="/list">
+        <Link className={styles.link} data-testid="list" to="/list">
           <div className={`${styles.card} ${styles.list}`} />
         </Link>
       </div>

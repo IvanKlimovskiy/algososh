@@ -46,8 +46,9 @@ export const StringComponent: React.FC = () => {
           isLimitText={true}
         />
         <Button
+          data-testid="button"
           isLoader={isButtonClicked}
-          disabled={isButtonClicked}
+          disabled={isButtonClicked || inputValue === ''}
           onClick={onClickHandler}
           extraClass="ml-6"
           text="Развернуть"
