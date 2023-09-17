@@ -1,4 +1,4 @@
-import { reverseString } from '../../algorithms/reverse-string';
+import { reverseString } from '../../algorithms/algorithms';
 
 describe('Тестирование алгоритма разворота строки', () => {
   test('Разворот строки с чётным количеством символов', () => {
