@@ -36,9 +36,10 @@ export const FibonacciPage: React.FC = () => {
           isLimitText={true}
         />
         <Button
+          data-testid="button"
           isLoader={isButtonClicked}
           onClick={onClickHandler}
-          disabled={+inputValue > 19 || isButtonClicked}
+          disabled={+inputValue > 19 || isButtonClicked || inputValue === ''}
           extraClass="ml-6"
           text="Рассчитать"
         />
