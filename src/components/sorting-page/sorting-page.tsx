@@ -6,6 +6,7 @@ import { Button } from '../ui/button/button';
 import { Direction } from '../../types/direction';
 import { Column } from '../ui/column/column';
 import { ElementStates } from '../../types/element-states';
+import { SHORT_DELAY_IN_MS } from '../../constants/delays';
 
 export const SortingPage: React.FC = () => {
   const [array, setArray] = useState<number[]>([]);
@@ -42,7 +43,7 @@ export const SortingPage: React.FC = () => {
       setArray([...newArray]);
 
       for (let j = i + 1; j <= arrayLength + 1; j++) {
-        await new Promise((resolve) => setTimeout(resolve, 500));
+        await new Promise((resolve) => setTimeout(resolve, SHORT_DELAY_IN_MS));
         setChangingIndexes([...changingIndexes, i, j]);
         setArray([...newArray]);
         if (direction === 'ascending') {
@@ -75,7 +76,7 @@ export const SortingPage: React.FC = () => {
 
     for (let i = 0; i <= arrayLength; i++) {
       for (let j = 0; j < arrayLength - i; j++) {
-        await new Promise((resolve) => setTimeout(resolve, 500));
+        await new Promise((resolve) => setTimeout(resolve, SHORT_DELAY_IN_MS));
         setChangingIndexes([...changingIndexes, j, j + 1]);
         setArray([...newArray]);
         if (direction === 'ascending') {

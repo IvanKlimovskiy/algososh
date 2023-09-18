@@ -6,6 +6,7 @@ import { Circle } from '../ui/circle/circle';
 import styles from './list-page.module.css';
 import { ArrowIcon } from '../ui/icons/arrow-icon';
 import { ElementStates } from '../../types/element-states';
+import { HEAD, TAIL } from '../../constants/element-captions';
 
 class Node<T> {
   value: T;
@@ -377,7 +378,7 @@ export const ListPage: React.FC = () => {
                       state={isChanging ? ElementStates.Changing : ElementStates.Default}
                     />
                   ) : index === 0 ? (
-                    'head'
+                    HEAD
                   ) : (
                     ''
                   )
@@ -397,7 +398,7 @@ export const ListPage: React.FC = () => {
                       state={isChanging ? ElementStates.Changing : ElementStates.Default}
                     />
                   ) : index === linkedListItems.length - 1 ? (
-                    'tail'
+                    TAIL
                   ) : (
                     ''
                   )

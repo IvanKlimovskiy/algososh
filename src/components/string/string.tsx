@@ -5,6 +5,7 @@ import { Button } from '../ui/button/button';
 import { Circle } from '../ui/circle/circle';
 import styles from './string.module.css';
 import { ElementStates } from '../../types/element-states';
+import { DELAY_IN_MS } from '../../constants/delays';
 
 export const StringComponent: React.FC = () => {
   const [circles, setCircles] = useState<string[]>([]);
@@ -24,7 +25,7 @@ export const StringComponent: React.FC = () => {
       setStartIndex(start);
       setEndIndex(end);
       setCircles([...arr]);
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+      await new Promise((resolve) => setTimeout(resolve, DELAY_IN_MS));
       const temp = arr[start];
       arr[start] = arr[end];
       arr[end] = temp;

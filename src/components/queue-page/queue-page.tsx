@@ -6,6 +6,8 @@ import { Button } from '../ui/button/button';
 import { ElementStates } from '../../types/element-states';
 import { Circle } from '../ui/circle/circle';
 import { ButtonType } from '../../types/button-type';
+import { SHORT_DELAY_IN_MS } from '../../constants/delays';
+import { HEAD, TAIL } from '../../constants/element-captions';
 
 export const QueuePage: React.FC = () => {
   interface IQueue<T> {
@@ -69,7 +71,7 @@ export const QueuePage: React.FC = () => {
     setIsChanging(true);
     queue.enqueue(+inputValue);
     setQueueItems([...queue.getElements()]);
-    await new Promise((resolve) => setTimeout(resolve, 500));
+    await new Promise((resolve) => setTimeout(resolve, SHORT_DELAY_IN_MS));
     setIsChanging(false);
     setTail((prevState) => prevState + 1);
     if (head === null) {
@@ -83,7 +85,7 @@ export const QueuePage: React.FC = () => {
     setIsChanging(true);
     queue.dequeue();
     setQueueItems([...queue.getElements()]);
-    await new Promise((resolve) => setTimeout(resolve, 500));
+    await new Promise((resolve) => setTimeout(resolve, SHORT_DELAY_IN_MS));
     setHead((prevState) => (prevState === null ? 0 : prevState + 1));
     if (head === 6) {
       setHead(6);
@@ -152,8 +154,8 @@ export const QueuePage: React.FC = () => {
           }
           return (
             <Circle
-              head={index === head ? 'head' : null}
-              tail={index === tail ? 'tail' : null}
+              head={index === head ? HEAD : null}
+              tail={index === tail ? TAIL : null}
               letter={el ? el.toString() : ''}
               key={index}
               index={index}

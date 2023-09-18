@@ -4,6 +4,7 @@ import styles from '../fibonacci-page/fibonacci-page.module.css';
 import { Input } from '../ui/input/input';
 import { Button } from '../ui/button/button';
 import { Circle } from '../ui/circle/circle';
+import { SHORT_DELAY_IN_MS } from '../../constants/delays';
 
 export const FibonacciPage: React.FC = () => {
   const [inputValue, setInputValue] = useState<string>('');
@@ -17,7 +18,7 @@ export const FibonacciPage: React.FC = () => {
     while (step <= +inputValue) {
       array.shift();
       setCircles([...array]);
-      await new Promise((resolve) => setTimeout(resolve, 500));
+      await new Promise((resolve) => setTimeout(resolve, SHORT_DELAY_IN_MS));
       array.unshift(0);
       array.push(array[step] + array[step + 1]);
       step++;
