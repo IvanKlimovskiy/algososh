@@ -10,10 +10,13 @@ export const BUTTON_RESET_STACK = '[data-testid="reset"]';
 export const BUTTON_DELETE_STACK = '[data-testid="delete"]';
 export const BUTTON_SUBMIT_STACK = '[data-testid="submit"]';
 export const INPUT_STACK = '[data-testid="input"]';
-export const CIRCLES_STACK = '[class^="stack-page_circles__"]';
 // Селекторы компонента очереди
 export const QUEUE_PAGE = '/queue';
 export const QUEUE_ID = '[data-testid="queue"]';
+export const BUTTON_RESET_QUEUE = '[data-testid="reset"]';
+export const BUTTON_DELETE_QUEUE = '[data-testid="delete"]';
+export const BUTTON_SUBMIT_QUEUE = '[data-testid="submit"]';
+export const INPUT_QUEUE = '[data-testid="input"]';
 // Селекторы компонента связного списка
 export const LIST_PAGE = '/list';
 export const LIST_ID = '[data-testid="list"]';

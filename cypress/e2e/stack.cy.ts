@@ -13,7 +13,6 @@ import {
   CIRCLE_HEAD,
   CIRCLE_DEFAULT_STYLE,
   BUTTON_LOADER,
-  CIRCLES_STACK,
 } from '../../src/constants/selectors';
 
 describe('Проверка корректной работоспособности компонента Стек', () => {
