@@ -1,4 +1,5 @@
 /// <reference types="cypress" />
+import { SHORT_DELAY_IN_MS } from '../../src/constants/delays';
 import {
   QUEUE_PAGE,
   INPUT_QUEUE,
@@ -14,7 +15,7 @@ import {
   CIRCLE_TAIL,
 } from '../../src/constants/selectors';
 
-describe('Проверка корректной работоспособности компонента Очередь', () => {
+describe('Проверка корректной работоспособности компонента Queue', () => {
   beforeEach(() => {
     cy.visit(QUEUE_PAGE);
     cy.url().should('include', QUEUE_PAGE);
@@ -26,7 +27,7 @@ describe('Проверка корректной работоспособност
   it('Кнопка Удалить доступна, если в очереди есть элементы', () => {
     cy.get(INPUT_QUEUE).type('123');
     cy.get(BUTTON_SUBMIT_QUEUE).click();
-    cy.wait(500);
+    cy.wait(SHORT_DELAY_IN_MS);
     cy.get(BUTTON_DELETE_QUEUE).should('not.be.disabled');
   });
   it('Проверка корректного добавления элемента в очередь', () => {
@@ -34,7 +35,7 @@ describe('Проверка корректной работоспособност
     cy.get(INPUT_QUEUE).type('123');
     cy.get(BUTTON_SUBMIT_QUEUE).click();
     cy.get(CIRCLE).eq(0).find(CIRCLE_BORDER).should('have.css', 'border', CIRCLE_CHANGING_STYLE);
-    cy.wait(500);
+    cy.wait(SHORT_DELAY_IN_MS);
     cy.get(CIRCLE).eq(0).should('contain.text', '123');
     cy.get(CIRCLE).eq(0).find(CIRCLE_BORDER).should('have.css', 'border', CIRCLE_DEFAULT_STYLE);
     cy.get(CIRCLE).eq(0).find(CIRCLE_INDEX).should('contain.text', '0');
@@ -47,7 +48,7 @@ describe('Проверка корректной работоспособност
     cy.get(INPUT_QUEUE).type('85');
     cy.get(BUTTON_SUBMIT_QUEUE).click();
     cy.get(CIRCLE).eq(1).find(CIRCLE_BORDER).should('have.css', 'border', CIRCLE_CHANGING_STYLE);
-    cy.wait(500);
+    cy.wait(SHORT_DELAY_IN_MS);
     cy.get(CIRCLE).eq(1).should('contain.text', '85');
     cy.get(CIRCLE).eq(1).find(CIRCLE_BORDER).should('have.css', 'border', CIRCLE_DEFAULT_STYLE);
     cy.get(CIRCLE).eq(1).find(CIRCLE_INDEX).should('contain.text', '1');
@@ -61,7 +62,7 @@ describe('Проверка корректной работоспособност
     cy.get(INPUT_QUEUE).type('69');
     cy.get(BUTTON_SUBMIT_QUEUE).click();
     cy.get(CIRCLE).eq(2).find(CIRCLE_BORDER).should('have.css', 'border', CIRCLE_CHANGING_STYLE);
-    cy.wait(500);
+    cy.wait(SHORT_DELAY_IN_MS);
     cy.get(CIRCLE).eq(2).should('contain.text', '69');
     cy.get(CIRCLE).eq(2).find(CIRCLE_BORDER).should('have.css', 'border', CIRCLE_DEFAULT_STYLE);
     cy.get(CIRCLE).eq(2).find(CIRCLE_INDEX).should('contain.text', '2');
@@ -76,20 +77,20 @@ describe('Проверка корректной работоспособност
     // Добавим три элемента в очередь
     cy.get(INPUT_QUEUE).type('123');
     cy.get(BUTTON_SUBMIT_QUEUE).click();
-    cy.wait(500);
+    cy.wait(SHORT_DELAY_IN_MS);
     cy.get(INPUT_QUEUE).type('85');
     cy.get(BUTTON_SUBMIT_QUEUE).click();
-    cy.wait(500);
+    cy.wait(SHORT_DELAY_IN_MS);
     cy.get(INPUT_QUEUE).type('69');
     cy.get(BUTTON_SUBMIT_QUEUE).click();
-    cy.wait(500);
+    cy.wait(SHORT_DELAY_IN_MS);
     cy.get(CIRCLE).eq(0).find(CIRCLE_BORDER).should('have.css', 'border', CIRCLE_DEFAULT_STYLE);
     cy.get(CIRCLE).eq(1).find(CIRCLE_BORDER).should('have.css', 'border', CIRCLE_DEFAULT_STYLE);
     cy.get(CIRCLE).eq(2).find(CIRCLE_BORDER).should('have.css', 'border', CIRCLE_DEFAULT_STYLE);
     // Удаляем элемент из очереди
     cy.get(BUTTON_DELETE_QUEUE).click();
     cy.get(CIRCLE).eq(0).find(CIRCLE_BORDER).should('have.css', 'border', CIRCLE_CHANGING_STYLE);
-    cy.wait(500);
+    cy.wait(SHORT_DELAY_IN_MS);
     cy.get(CIRCLE).eq(0).should('not.contain.text');
     // Проверяем что у первого элемента нет указателя tail и нет указателя head
     cy.get(CIRCLE).eq(0).find(CIRCLE_TAIL).should('not.contain.text', 'tail');
@@ -103,7 +104,7 @@ describe('Проверка корректной работоспособност
     // Удаляем ещё один элемент из очереди
     cy.get(BUTTON_DELETE_QUEUE).click();
     cy.get(CIRCLE).eq(1).find(CIRCLE_BORDER).should('have.css', 'border', CIRCLE_CHANGING_STYLE);
-    cy.wait(500);
+    cy.wait(SHORT_DELAY_IN_MS);
     cy.get(CIRCLE).eq(1).should('not.contain.text');
     // Проверяем что у второго элемента нет указателя tail и нет указателя head
     cy.get(CIRCLE).eq(1).find(CIRCLE_TAIL).should('not.contain.text', 'tail');
@@ -116,13 +117,13 @@ describe('Проверка корректной работоспособност
     // Добавим три элемента в очередь
     cy.get(INPUT_QUEUE).type('123');
     cy.get(BUTTON_SUBMIT_QUEUE).click();
-    cy.wait(500);
+    cy.wait(SHORT_DELAY_IN_MS);
     cy.get(INPUT_QUEUE).type('85');
     cy.get(BUTTON_SUBMIT_QUEUE).click();
-    cy.wait(500);
+    cy.wait(SHORT_DELAY_IN_MS);
     cy.get(INPUT_QUEUE).type('69');
     cy.get(BUTTON_SUBMIT_QUEUE).click();
-    cy.wait(500);
+    cy.wait(SHORT_DELAY_IN_MS);
     cy.get(BUTTON_RESET_QUEUE).click();
     cy.get(CIRCLE).each(($el) => {
       cy.wrap($el).should('contain.text', '');

@@ -7,7 +7,8 @@ import styles from './list-page.module.css';
 import { ArrowIcon } from '../ui/icons/arrow-icon';
 import { ElementStates } from '../../types/element-states';
 import { HEAD, TAIL } from '../../constants/element-captions';
-
+import { DELAY_IN_MS } from '../../constants/delays';
+import { ButtonType } from '../../types/button-type';
 class Node<T> {
   value: T;
   next: Node<T> | null;
@@ -118,23 +119,13 @@ class LinkedList<T> implements ILinkedList<T> {
   };
 }
 
-enum ButtonActions {
-  Default = 'default',
-  AddHead = 'addHead',
-  AddTail = 'addTail',
-  RemoveHead = 'removeHead',
-  RemoveTail = 'removeTail',
-  AddByIndex = 'addByIndex',
-  RemoveByIndex = 'removeByIndex',
-}
-
 export const ListPage: React.FC = () => {
   const linkedList = useMemo(() => new LinkedList<string>(), []);
   const [inputValue, setInputValue] = useState<string>('');
   const [inputIndexValue, setInputIndexValue] = useState<string>('');
   const [linkedListItems, setLinkedListItems] = useState<string[]>(['0', '34', '8', '1']);
   const [isChanging, setIsChanging] = useState<boolean>(false);
-  const [buttonAction, setButtonAction] = useState<ButtonActions>(ButtonActions.Default);
+  const [buttonAction, setButtonAction] = useState<ButtonType>(ButtonType.Default);
   const [changingIndex, setChangingIndex] = useState<number[] | number | null>(null);
   const [changingIndexArr, setChangingIndexArr] = useState<number[]>([]);
   const [itemAddedByIndex, setItemAddedByIndex] = useState<number | null>();
@@ -153,17 +144,17 @@ export const ListPage: React.FC = () => {
 
   const onClickAddHeadButton = async () => {
     setIsChanging(true);
-    setButtonAction(ButtonActions.AddHead);
+    setButtonAction(ButtonType.AddHead);
     setChangingIndex(0);
 
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+    await new Promise((resolve) => setTimeout(resolve, DELAY_IN_MS));
 
     linkedList.insertAt(inputValue, 0);
     setLinkedListItems(linkedList.getLinkedListItems());
-    setButtonAction(ButtonActions.Default);
+    setButtonAction(ButtonType.Default);
     setInputValue('');
 
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+    await new Promise((resolve) => setTimeout(resolve, DELAY_IN_MS));
 
     setIsChanging(false);
     setChangingIndex(null);
@@ -171,17 +162,17 @@ export const ListPage: React.FC = () => {
 
   const onClickAddTailButton = async () => {
     setIsChanging(true);
-    setButtonAction(ButtonActions.AddTail);
+    setButtonAction(ButtonType.AddTail);
     setChangingIndex(linkedListItems.length);
 
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+    await new Promise((resolve) => setTimeout(resolve, DELAY_IN_MS));
 
     linkedList.insertAt(inputValue, linkedList.getSize());
     setLinkedListItems(linkedList.getLinkedListItems());
     setInputValue('');
-    setButtonAction(ButtonActions.Default);
+    setButtonAction(ButtonType.Default);
 
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+    await new Promise((resolve) => setTimeout(resolve, DELAY_IN_MS));
 
     setChangingIndex(null);
     setIsChanging(false);
@@ -189,41 +180,41 @@ export const ListPage: React.FC = () => {
 
   const onClickDeleteHeadButton = async () => {
     setIsChanging(true);
-    setButtonAction(ButtonActions.RemoveHead);
+    setButtonAction(ButtonType.RemoveHead);
 
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+    await new Promise((resolve) => setTimeout(resolve, DELAY_IN_MS));
 
     linkedList.removeAt(0);
     setLinkedListItems(linkedList.getLinkedListItems());
-    setButtonAction(ButtonActions.Default);
+    setButtonAction(ButtonType.Default);
 
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+    await new Promise((resolve) => setTimeout(resolve, DELAY_IN_MS));
 
     setIsChanging(false);
   };
 
   const onClickDeleteTailButton = async () => {
     setIsChanging(true);
-    setButtonAction(ButtonActions.RemoveTail);
+    setButtonAction(ButtonType.RemoveTail);
 
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+    await new Promise((resolve) => setTimeout(resolve, DELAY_IN_MS));
 
     linkedList.removeAt(linkedList.getSize() - 1);
     setLinkedListItems(linkedList.getLinkedListItems());
-    setButtonAction(ButtonActions.Default);
+    setButtonAction(ButtonType.Default);
 
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+    await new Promise((resolve) => setTimeout(resolve, DELAY_IN_MS));
 
     setIsChanging(false);
   };
 
   const onClickAddByIndexButton = async () => {
     setIsChanging(true);
-    setButtonAction(ButtonActions.AddByIndex);
+    setButtonAction(ButtonType.AddByIndex);
 
     for (let i = 0; i <= +inputIndexValue; i++) {
       setChangingIndex(i);
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+      await new Promise((resolve) => setTimeout(resolve, DELAY_IN_MS));
       setChangingIndexArr((prevChangingIndex) => [...prevChangingIndex, i + 1]);
     }
 
@@ -234,10 +225,10 @@ export const ListPage: React.FC = () => {
     setLinkedListItems(linkedList.getLinkedListItems());
     setItemAddedByIndex(+inputIndexValue);
 
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+    await new Promise((resolve) => setTimeout(resolve, DELAY_IN_MS));
 
     setItemAddedByIndex(null);
-    setButtonAction(ButtonActions.Default);
+    setButtonAction(ButtonType.Default);
     setInputValue('');
     setInputIndexValue('');
     setIsChanging(false);
@@ -245,21 +236,21 @@ export const ListPage: React.FC = () => {
 
   const onClickDeleteByIndexButton = async () => {
     setIsChanging(true);
-    setButtonAction(ButtonActions.RemoveByIndex);
+    setButtonAction(ButtonType.RemoveByIndex);
 
     for (let i = 0; i <= +inputIndexValue; i++) {
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+      await new Promise((resolve) => setTimeout(resolve, DELAY_IN_MS));
       setChangingIndexArr((prevChangingIndex) => [...prevChangingIndex, i]);
     }
 
     setChangingIndex(+inputIndexValue);
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+    await new Promise((resolve) => setTimeout(resolve, DELAY_IN_MS));
     linkedList.removeAt(+inputIndexValue);
     setLinkedListItems(linkedList.getLinkedListItems());
     setChangingIndexArr([]);
     setChangingIndex(null);
 
-    setButtonAction(ButtonActions.Default);
+    setButtonAction(ButtonType.Default);
     setInputIndexValue('');
     setIsChanging(false);
   };
@@ -276,14 +267,14 @@ export const ListPage: React.FC = () => {
             value={inputValue}
             onChange={onInputValueChange}
             disabled={isChanging}
-            data-testid="valueInput"
+            data-testid="input"
           />
           <Button
             text="Добавить в head"
             extraClass="button"
             onClick={onClickAddHeadButton}
             disabled={!inputValue}
-            isLoader={buttonAction === ButtonActions.AddHead}
+            isLoader={buttonAction === ButtonType.AddHead}
             data-testid="addHeadButton"
           />
           <Button
@@ -291,7 +282,7 @@ export const ListPage: React.FC = () => {
             extraClass="button"
             onClick={onClickAddTailButton}
             disabled={!inputValue}
-            isLoader={buttonAction === ButtonActions.AddTail}
+            isLoader={buttonAction === ButtonType.AddTail}
             data-testid="addTailButton"
           />
           <Button
@@ -299,7 +290,7 @@ export const ListPage: React.FC = () => {
             extraClass="button"
             onClick={onClickDeleteHeadButton}
             disabled={linkedListItems.length === 0}
-            isLoader={buttonAction === ButtonActions.RemoveHead}
+            isLoader={buttonAction === ButtonType.RemoveHead}
             data-testid="removeHeadButton"
           />
           <Button
@@ -307,7 +298,7 @@ export const ListPage: React.FC = () => {
             extraClass="button"
             onClick={onClickDeleteTailButton}
             disabled={linkedListItems.length === 0}
-            isLoader={buttonAction === ButtonActions.RemoveTail}
+            isLoader={buttonAction === ButtonType.RemoveTail}
             data-testid="removeTailButton"
           />
         </div>
@@ -330,7 +321,7 @@ export const ListPage: React.FC = () => {
               +inputIndexValue > linkedListItems.length - 1 ||
               inputValue === ''
             }
-            isLoader={buttonAction === ButtonActions.AddByIndex}
+            isLoader={buttonAction === ButtonType.AddByIndex}
             data-testid="addByIndexButton"
           />
           <Button
@@ -338,7 +329,7 @@ export const ListPage: React.FC = () => {
             extraClass="button"
             onClick={onClickDeleteByIndexButton}
             disabled={inputIndexValue === '' || +inputIndexValue < 0 || +inputIndexValue > linkedListItems.length - 1}
-            isLoader={buttonAction === ButtonActions.RemoveByIndex}
+            isLoader={buttonAction === ButtonType.RemoveByIndex}
             data-testid="removeByIndexButton"
           />
         </div>
@@ -351,27 +342,27 @@ export const ListPage: React.FC = () => {
                 key={`circle-${index}`}
                 index={index}
                 letter={
-                  buttonAction === ButtonActions.RemoveHead && index === 0
+                  buttonAction === ButtonType.RemoveHead && index === 0
                     ? ''
-                    : (buttonAction === ButtonActions.RemoveTail && index === linkedListItems.length - 1) ||
-                      (buttonAction === ButtonActions.RemoveByIndex && index === changingIndex)
+                    : (buttonAction === ButtonType.RemoveTail && index === linkedListItems.length - 1) ||
+                      (buttonAction === ButtonType.RemoveByIndex && index === changingIndex)
                     ? ''
                     : item
                 }
                 head={
-                  index === 0 && isChanging && buttonAction === ButtonActions.AddHead ? (
+                  index === 0 && isChanging && buttonAction === ButtonType.AddHead ? (
                     <Circle
                       letter={inputValue}
                       isSmall={true}
                       state={isChanging ? ElementStates.Changing : ElementStates.Default}
                     />
-                  ) : index === linkedListItems.length - 1 && buttonAction === ButtonActions.AddTail ? (
+                  ) : index === linkedListItems.length - 1 && buttonAction === ButtonType.AddTail ? (
                     <Circle
                       letter={inputValue}
                       isSmall={true}
                       state={isChanging ? ElementStates.Changing : ElementStates.Default}
                     />
-                  ) : isChanging && buttonAction === ButtonActions.AddByIndex && index === changingIndex ? (
+                  ) : isChanging && buttonAction === ButtonType.AddByIndex && index === changingIndex ? (
                     <Circle
                       letter={inputValue}
                       isSmall={true}
@@ -384,14 +375,14 @@ export const ListPage: React.FC = () => {
                   )
                 }
                 tail={
-                  index === 0 && buttonAction === ButtonActions.RemoveHead ? (
+                  index === 0 && buttonAction === ButtonType.RemoveHead ? (
                     <Circle
                       letter={item}
                       isSmall={true}
                       state={isChanging ? ElementStates.Changing : ElementStates.Default}
                     />
-                  ) : (index === linkedListItems.length - 1 && buttonAction === ButtonActions.RemoveTail) ||
-                    (buttonAction === ButtonActions.RemoveByIndex && index === changingIndex) ? (
+                  ) : (index === linkedListItems.length - 1 && buttonAction === ButtonType.RemoveTail) ||
+                    (buttonAction === ButtonType.RemoveByIndex && index === changingIndex) ? (
                     <Circle
                       letter={item}
                       isSmall={true}
@@ -404,25 +395,25 @@ export const ListPage: React.FC = () => {
                   )
                 }
                 state={
-                  isChanging && buttonAction === ButtonActions.RemoveByIndex && changingIndex === index
+                  isChanging && buttonAction === ButtonType.RemoveByIndex && changingIndex === index
                     ? ElementStates.Default
                     : (index === 0 &&
                         isChanging &&
                         inputValue === '' &&
                         changingIndex === 0 &&
-                        buttonAction === ButtonActions.Default) ||
+                        buttonAction === ButtonType.Default) ||
                       (index === linkedListItems.length - 1 &&
                         isChanging &&
                         inputValue === '' &&
                         changingIndex === linkedListItems.length - 1 &&
-                        buttonAction === ButtonActions.Default) ||
-                      (isChanging && buttonAction === ButtonActions.AddByIndex && itemAddedByIndex === index)
+                        buttonAction === ButtonType.Default) ||
+                      (isChanging && buttonAction === ButtonType.AddByIndex && itemAddedByIndex === index)
                     ? ElementStates.Modified
                     : (isChanging &&
-                        buttonAction === ButtonActions.AddByIndex &&
+                        buttonAction === ButtonType.AddByIndex &&
                         typeof changingIndexArr[index] === 'number' &&
                         changingIndexArr[index] - 1 === index) ||
-                      (isChanging && buttonAction === ButtonActions.RemoveByIndex && index === changingIndexArr[index])
+                      (isChanging && buttonAction === ButtonType.RemoveByIndex && index === changingIndexArr[index])
                     ? ElementStates.Changing
                     : ElementStates.Default
                 }

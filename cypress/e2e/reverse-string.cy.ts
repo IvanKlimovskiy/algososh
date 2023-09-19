@@ -1,5 +1,6 @@
 /// <reference types="cypress" />
 
+import { DELAY_IN_MS } from '../../src/constants/delays';
 import {
   REVERSE_STRING_PAGE,
   BUTTON_REVERSE_STRING,
@@ -11,7 +12,7 @@ import {
   CIRCLE_MODIFIED_STYLE,
 } from '../../src/constants/selectors';
 
-describe('Проверка алгоритма разворота строки', () => {
+describe('Проверка корректной работоспособности компонента String', () => {
   beforeEach(() => {
     cy.visit(REVERSE_STRING_PAGE);
     cy.url().should('include', REVERSE_STRING_PAGE);
@@ -56,7 +57,7 @@ describe('Проверка алгоритма разворота строки', 
       .find(CIRCLE_BORDER)
       .should('have.css', 'border', CIRCLE_CHANGING_STYLE);
     //
-    cy.wait(1000);
+    cy.wait(DELAY_IN_MS);
     //
     cy.get(CIRCLE)
       .eq(0)

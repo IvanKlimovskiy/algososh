@@ -1,4 +1,5 @@
 /// <reference types="cypress" />
+import { SHORT_DELAY_IN_MS } from '../../src/constants/delays';
 import {
   BUTTON_FIBONACCI,
   CIRCLE,
@@ -9,7 +10,7 @@ import {
   CIRCLE_INDEX,
 } from '../../src/constants/selectors';
 
-describe('Проверка последовательности Фибоначчи', () => {
+describe('Проверка корректной работоспособности компонента Fibonacci', () => {
   beforeEach(() => {
     cy.visit(FIBONACCI_PAGE);
     cy.url().should('include', FIBONACCI_PAGE);
@@ -31,7 +32,7 @@ describe('Проверка последовательности Фибоначч
       .get(CIRCLE_INDEX)
       .should('contain.text', '0');
     //
-    cy.wait(500);
+    cy.wait(SHORT_DELAY_IN_MS);
     //
     cy.get(CIRCLE)
       .eq(0)
@@ -49,7 +50,7 @@ describe('Проверка последовательности Фибоначч
       .get(CIRCLE_INDEX)
       .should('contain.text', '1');
     //
-    cy.wait(500);
+    cy.wait(SHORT_DELAY_IN_MS);
     //
     cy.get(CIRCLE)
       .eq(0)
@@ -75,7 +76,7 @@ describe('Проверка последовательности Фибоначч
       .get(CIRCLE_INDEX)
       .should('contain.text', '2');
     //
-    cy.wait(500);
+    cy.wait(SHORT_DELAY_IN_MS);
     //
     cy.get(CIRCLE)
       .eq(0)
@@ -109,7 +110,7 @@ describe('Проверка последовательности Фибоначч
       .get(CIRCLE_INDEX)
       .should('contain.text', '3');
     //
-    cy.wait(500);
+    cy.wait(SHORT_DELAY_IN_MS);
     //
     cy.get(CIRCLE)
       .eq(0)
@@ -151,7 +152,7 @@ describe('Проверка последовательности Фибоначч
       .get(CIRCLE_INDEX)
       .should('contain.text', '4');
     //
-    cy.wait(500);
+    cy.wait(SHORT_DELAY_IN_MS);
     //
     cy.get(CIRCLE)
       .eq(0)
@@ -201,7 +202,7 @@ describe('Проверка последовательности Фибоначч
       .get(CIRCLE_INDEX)
       .should('contain.text', '5');
     //
-    cy.wait(500);
+    cy.wait(SHORT_DELAY_IN_MS);
     //
     cy.get(CIRCLE)
       .eq(0)
@@ -259,7 +260,7 @@ describe('Проверка последовательности Фибоначч
       .get(CIRCLE_INDEX)
       .should('contain.text', '6');
     //
-    cy.wait(500);
+    cy.wait(SHORT_DELAY_IN_MS);
     //
     cy.get(CIRCLE)
       .eq(0)
@@ -325,6 +326,6 @@ describe('Проверка последовательности Фибоначч
       .get(CIRCLE_INDEX)
       .should('contain.text', '7');
     //
-    cy.wait(500);
+    cy.wait(SHORT_DELAY_IN_MS);
   });
 });

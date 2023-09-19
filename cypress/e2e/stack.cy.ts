@@ -1,5 +1,6 @@
 /// <reference types="cypress" />
 
+import { SHORT_DELAY_IN_MS } from '../../src/constants/delays';
 import {
   BUTTON_SUBMIT_STACK,
   BUTTON_DELETE_STACK,
@@ -15,7 +16,7 @@ import {
   BUTTON_LOADER,
 } from '../../src/constants/selectors';
 
-describe('Проверка корректной работоспособности компонента Стек', () => {
+describe('Проверка корректной работоспособности компонента Stack', () => {
   beforeEach(() => {
     cy.visit(STACK_PAGE);
     cy.url().should('include', STACK_PAGE);
@@ -39,7 +40,7 @@ describe('Проверка корректной работоспособност
     cy.get(INPUT_STACK).type('123');
     cy.get(BUTTON_SUBMIT_STACK).click();
     cy.get(BUTTON_LOADER).should('exist');
-    cy.wait(500);
+    cy.wait(SHORT_DELAY_IN_MS);
     cy.get(BUTTON_DELETE_STACK).click();
     cy.get(BUTTON_LOADER).should('exist');
   });
@@ -56,7 +57,7 @@ describe('Проверка корректной работоспособност
       .should('contain.text', '0')
       .get(CIRCLE_HEAD)
       .should('contain.text', 'top');
-    cy.wait(500);
+    cy.wait(SHORT_DELAY_IN_MS);
     //
     cy.get(BUTTON_LOADER).should('not.exist');
     cy.get(INPUT_STACK).type('55');
@@ -79,7 +80,7 @@ describe('Проверка корректной работоспособност
       .should('contain.text', '1')
       .get(CIRCLE_HEAD)
       .should('contain.text', 'top');
-    cy.wait(500);
+    cy.wait(SHORT_DELAY_IN_MS);
     //
     cy.get(INPUT_STACK).type('39');
     cy.get(BUTTON_SUBMIT_STACK).click();
@@ -110,7 +111,7 @@ describe('Проверка корректной работоспособност
       .should('contain.text', '2')
       .get(CIRCLE_HEAD)
       .should('contain.text', 'top');
-    cy.wait(500);
+    cy.wait(SHORT_DELAY_IN_MS);
     //
     cy.get(CIRCLE)
       .eq(0)
@@ -143,13 +144,13 @@ describe('Проверка корректной работоспособност
   it('Проверка корректного удаления элемента из стека', () => {
     cy.get(INPUT_STACK).type('123');
     cy.get(BUTTON_SUBMIT_STACK).click();
-    cy.wait(500);
+    cy.wait(SHORT_DELAY_IN_MS);
     cy.get(INPUT_STACK).type('55');
     cy.get(BUTTON_SUBMIT_STACK).click();
-    cy.wait(500);
+    cy.wait(SHORT_DELAY_IN_MS);
     cy.get(INPUT_STACK).type('39');
     cy.get(BUTTON_SUBMIT_STACK).click();
-    cy.wait(500);
+    cy.wait(SHORT_DELAY_IN_MS);
     cy.get(BUTTON_DELETE_STACK).click();
     cy.get(CIRCLE)
       .eq(0)
@@ -178,7 +179,7 @@ describe('Проверка корректной работоспособност
       .should('contain.text', '2')
       .get(CIRCLE_HEAD)
       .should('contain.text', 'top');
-    cy.wait(500);
+    cy.wait(SHORT_DELAY_IN_MS);
     //
     cy.get(CIRCLE)
       .eq(0)
@@ -202,13 +203,13 @@ describe('Проверка корректной работоспособност
   it('Проверка корректности очищения стека', () => {
     cy.get(INPUT_STACK).type('123');
     cy.get(BUTTON_SUBMIT_STACK).click();
-    cy.wait(500);
+    cy.wait(SHORT_DELAY_IN_MS);
     cy.get(INPUT_STACK).type('55');
     cy.get(BUTTON_SUBMIT_STACK).click();
-    cy.wait(500);
+    cy.wait(SHORT_DELAY_IN_MS);
     cy.get(INPUT_STACK).type('39');
     cy.get(BUTTON_SUBMIT_STACK).click();
-    cy.wait(500);
+    cy.wait(SHORT_DELAY_IN_MS);
     cy.get(CIRCLE).should('have.length', '3');
     cy.get(BUTTON_RESET_STACK).click();
     cy.get(CIRCLE).should('have.length', '0');
