@@ -6,6 +6,8 @@ import { Button } from '../ui/button/button';
 import { ElementStates } from '../../types/element-states';
 import { Circle } from '../ui/circle/circle';
 import { ButtonType } from '../../types/button-type';
+import { SHORT_DELAY_IN_MS } from '../../constants/delays';
+import { HEAD, TAIL } from '../../constants/element-captions';
 
 export const QueuePage: React.FC = () => {
   interface IQueue<T> {
@@ -46,6 +48,14 @@ export const QueuePage: React.FC = () => {
       return this.index;
     }
 
+    getTail() {
+      return this.tail;
+    }
+
+    getHead() {
+      return this.head;
+    }
+
     clear() {
       this.head = 0;
       this.tail = 0;
@@ -57,6 +67,7 @@ export const QueuePage: React.FC = () => {
   const queue = useMemo(() => new Queue<number>(7), []);
   const [queueItems, setQueueItems] = useState<(number | null)[]>([]);
   const [isChanging, setIsChanging] = useState(false);
+  const [isDeleting, setIsDeleting] = useState(false);
   const [head, setHead] = useState<number | null>(null);
   const [tail, setTail] = useState<number>(-1);
   const [clickedButton, setClickedButton] = useState<ButtonType | null>(null);
@@ -69,7 +80,7 @@ export const QueuePage: React.FC = () => {
     setIsChanging(true);
     queue.enqueue(+inputValue);
     setQueueItems([...queue.getElements()]);
-    await new Promise((resolve) => setTimeout(resolve, 500));
+    await new Promise((resolve) => setTimeout(resolve, SHORT_DELAY_IN_MS));
     setIsChanging(false);
     setTail((prevState) => prevState + 1);
     if (head === null) {
@@ -80,16 +91,16 @@ export const QueuePage: React.FC = () => {
   };
 
   const dequeueElement = async () => {
-    setIsChanging(true);
+    setIsDeleting(true);
+    await new Promise((resolve) => setTimeout(resolve, SHORT_DELAY_IN_MS));
     queue.dequeue();
     setQueueItems([...queue.getElements()]);
-    await new Promise((resolve) => setTimeout(resolve, 500));
     setHead((prevState) => (prevState === null ? 0 : prevState + 1));
     if (head === 6) {
       setHead(6);
       setTail(-1);
     }
-    setIsChanging(false);
+    setIsDeleting(false);
     setQueueItems([...queue.getElements()]);
     setInputValue('');
   };
@@ -106,6 +117,7 @@ export const QueuePage: React.FC = () => {
     <SolutionLayout title="Очередь">
       <div className={styles.wrapper}>
         <Input
+          data-testid="input"
           extraClass={styles.input}
           type="text"
           value={inputValue}
@@ -115,6 +127,7 @@ export const QueuePage: React.FC = () => {
         />
         <div className={styles.buttonsWrapper}>
           <Button
+            data-testid="submit"
             isLoader={isChanging && clickedButton === ButtonType.Submit}
             disabled={inputValue === '' || queueItems[queueItems.length - 1] !== null || head === 6}
             onClick={() => {
@@ -124,6 +137,7 @@ export const QueuePage: React.FC = () => {
             text={'Добавить'}
           />
           <Button
+            data-testid="delete"
             isLoader={isChanging && clickedButton === ButtonType.Delete}
             disabled={queueItems.every((el) => el === null)}
             onClick={() => {
@@ -134,6 +148,7 @@ export const QueuePage: React.FC = () => {
           />
         </div>
         <Button
+          data-testid="reset"
           isLoader={isChanging && clickedButton === ButtonType.Reset}
           onClick={() => {
             clearQueue();
@@ -144,20 +159,18 @@ export const QueuePage: React.FC = () => {
       </div>
       <div className={styles.circles}>
         {queueItems.map((el, index) => {
-          let state: ElementStates | null;
-          if (isChanging && queue.getIndex() === index) {
-            state = ElementStates.Changing;
-          } else {
-            state = ElementStates.Default;
-          }
           return (
             <Circle
-              head={index === head ? 'head' : null}
-              tail={index === tail ? 'tail' : null}
+              head={index === head ? HEAD : null}
+              tail={index === tail ? TAIL : null}
               letter={el ? el.toString() : ''}
               key={index}
               index={index}
-              state={state}
+              state={
+                (isChanging && queue.getIndex() === index) || (index === queue.getHead() && el !== null && isDeleting)
+                  ? ElementStates.Changing
+                  : ElementStates.Default
+              }
             />
           );
         })}

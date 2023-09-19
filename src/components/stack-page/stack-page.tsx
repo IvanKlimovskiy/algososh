@@ -6,6 +6,7 @@ import { Button } from '../ui/button/button';
 import { Circle } from '../ui/circle/circle';
 import { ElementStates } from '../../types/element-states';
 import { ButtonType } from '../../types/button-type';
+import { SHORT_DELAY_IN_MS } from '../../constants/delays';
 
 export const StackPage: React.FC = () => {
   interface IStack<T> {
@@ -57,7 +58,7 @@ export const StackPage: React.FC = () => {
         setIsChanging(false);
         setStackItems([...stack.getElements()]);
         resolve();
-      }, 500);
+      }, SHORT_DELAY_IN_MS);
     });
     setInputValue('');
   };
@@ -70,7 +71,7 @@ export const StackPage: React.FC = () => {
         setIsChanging(false);
         setStackItems([...stack.getElements()]);
         resolve();
-      }, 500);
+      }, SHORT_DELAY_IN_MS);
     });
   };
 
@@ -83,6 +84,7 @@ export const StackPage: React.FC = () => {
     <SolutionLayout title="Стек">
       <div className={styles.wrapper}>
         <Input
+          data-testid="input"
           extraClass={styles.input}
           type="text"
           value={inputValue}
@@ -92,6 +94,7 @@ export const StackPage: React.FC = () => {
         />
         <div className={styles.buttonsWrapper}>
           <Button
+            data-testid="submit"
             isLoader={isChanging && clickedButton === ButtonType.Submit}
             disabled={inputValue === ''}
             onClick={() => {
@@ -101,6 +104,7 @@ export const StackPage: React.FC = () => {
             text={'Добавить'}
           />
           <Button
+            data-testid="delete"
             isLoader={isChanging && clickedButton === ButtonType.Delete}
             onClick={() => {
               popElement().then();
@@ -111,6 +115,7 @@ export const StackPage: React.FC = () => {
           />
         </div>
         <Button
+          data-testid="reset"
           isLoader={isChanging && clickedButton === ButtonType.Reset}
           onClick={() => {
             clearStack();

@@ -5,6 +5,7 @@ import { Button } from '../ui/button/button';
 import { Circle } from '../ui/circle/circle';
 import styles from './string.module.css';
 import { ElementStates } from '../../types/element-states';
+import { DELAY_IN_MS } from '../../constants/delays';
 
 export const StringComponent: React.FC = () => {
   const [circles, setCircles] = useState<string[]>([]);
@@ -14,29 +15,26 @@ export const StringComponent: React.FC = () => {
   const [inputValue, setInputValue] = useState('');
   const [isEndedAnimation, setIsEndedAnimation] = useState(false);
 
-  const onClickHandler = () => {
+  const onClickHandler = async () => {
     setIsEndedAnimation(false);
     setIsButtonClicked(true);
     const arr = inputValue.split('');
     let start = 0;
     let end = arr.length - 1;
-    const animation = setInterval(() => {
-      if (start > end) {
-        setIsEndedAnimation(true);
-        setCircles([...arr]);
-        setIsButtonClicked(false);
-        clearInterval(animation);
-        return;
-      }
+    while (start < end) {
       setStartIndex(start);
       setEndIndex(end);
       setCircles([...arr]);
+      await new Promise((resolve) => setTimeout(resolve, DELAY_IN_MS));
       const temp = arr[start];
       arr[start] = arr[end];
       arr[end] = temp;
       start++;
       end--;
-    }, 1000);
+    }
+    setIsEndedAnimation(true);
+    setCircles([...arr]);
+    setIsButtonClicked(false);
   };
 
   return (
@@ -49,8 +47,9 @@ export const StringComponent: React.FC = () => {
           isLimitText={true}
         />
         <Button
+          data-testid="button"
           isLoader={isButtonClicked}
-          disabled={isButtonClicked}
+          disabled={isButtonClicked || inputValue === ''}
           onClick={onClickHandler}
           extraClass="ml-6"
           text="Развернуть"
